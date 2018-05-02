@@ -1,0 +1,30 @@
+main, footer {
+  padding-right: 300px;
+}
+
+#navbar {
+  z-index: 1000;
+}
+
+#nav {
+  height: 100%;
+}
+/*
+#sidenav {
+    right: 0;
+    left: inherit;
+}
+*/
+
+.side-nav_footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  padding: 10px 30px;
+  border-top: solid 1px #dbdbdb;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+}

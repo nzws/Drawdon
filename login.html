@@ -1,0 +1,49 @@
+<script>
+  var token = getParam(window.location.search);
+  if (token["code"]) {
+    var uri = "https://draw.nzws.me/login.html";
+    fetch("https://" + localStorage.getItem('drawdon_domain') + "/oauth/token", {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({
+        client_id: localStorage.getItem('drawdon_cid'),
+        client_secret: localStorage.getItem('drawdon_scr'),
+        grant_type: 'authorization_code',
+        redirect_uri: uri,
+        code: token["code"]
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error();
+      }
+    }).then(function (json) {
+      localStorage.setItem('drawdon_token', json.access_token);
+      var inst = localStorage.getItem('drawdon_domain');
+      fetch("https://" + inst + "/api/v1/accounts/verify_credentials", {
+        headers: {'Authorization': 'Bearer ' + json.access_token}
+      }).then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error();
+        }
+      }).then(function (json_acct) {
+        location.href = "/";
+      });
+    });
+  }
+  function getParam(val) {
+    var data_s = {}, data = val.substring(1).split('&'), data_ex, value, key;
+    for (var i = 0; i < data.length; i++) {
+      data_ex = value = key = null;
+      data_ex = data[i].search(/=/);
+      value = data[i].slice(data[i].indexOf('=', 0) + 1);
+      if (data_ex != -1)
+        key = data[i].slice(0, data_ex);
+      if (key) data_s[key] = decodeURIComponent(value);
+    }
+    return data_s;
+  }
+</script>
