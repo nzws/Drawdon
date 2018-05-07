@@ -1,1 +1,1 @@
-const uri = "http://localhost:63342/Drawdon";
+const uri = "https://draw.nzws.me";
