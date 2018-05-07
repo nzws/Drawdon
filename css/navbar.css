@@ -1,5 +1,5 @@
-main, footer {
-  padding-right: 300px;
+header, main, footer, #sketchBox {
+  padding-left: 300px;
 }
 
 #navbar {

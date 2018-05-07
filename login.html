@@ -1,7 +1,8 @@
+<script src="config.js"></script>
 <script>
   var token = getParam(window.location.search);
   if (token["code"]) {
-    var uri = "https://draw.nzws.me/login.html";
+    var url = uri + "/login.html";
     fetch("https://" + localStorage.getItem('drawdon_domain') + "/oauth/token", {
       method: 'POST',
       headers: {'content-type': 'application/json'},
@@ -9,7 +10,7 @@
         client_id: localStorage.getItem('drawdon_cid'),
         client_secret: localStorage.getItem('drawdon_scr'),
         grant_type: 'authorization_code',
-        redirect_uri: uri,
+        redirect_uri: url,
         code: token["code"]
       })
     }).then(function (response) {
@@ -30,7 +31,7 @@
           throw new Error();
         }
       }).then(function (json_acct) {
-        location.href = "/";
+        location.href = uri;
       });
     });
   }
