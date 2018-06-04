@@ -1,93 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset=utf-8>
-    <title>Drawdon</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/main.css">
-    <meta name="viewport" content="initial-scale=1.0"/>
+    <?php 
+    $title = "新規お絵かき";
+    include "../include/header.php"; ?>
   </head>
   <body>
     <div class="main_blur" id="mainBox">
-      <div class="nav">
-        <ul id="nav" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
-          <li class="logo"><a id="logo-container" href="#" class="brand-logo">Drawdon</a></li>
 
-          <div class="row">
-            <div class="col s6">
-              <button class="waves-effect waves-light btn w-max blue darken-3" onclick="save_canvas()"><i class="material-icons left">save</i> 一時保存</button>
-            </div>
-            <div class="col s6">
-              <button class="waves-effect waves-light btn w-max blue darken-3" onclick="uploadDraw('open')"><i class="material-icons left">cloud_upload</i> 投稿</button>
-            </div>
-          </div>
+<?php
+$navbar_html = <<< EOF
+<div class="row">
+  <div class="col s6">
+    <button class="waves-effect waves-light btn w-max blue darken-3" onclick="save_canvas()"><i class="material-icons left">save</i> 一時保存</button>
+  </div>
+  <div class="col s6">
+    <button class="waves-effect waves-light btn w-max blue darken-3" onclick="uploadDraw('open')"><i class="material-icons left">cloud_upload</i> 投稿</button>
+  </div>
+</div>
 
-          <div class="row" id="restore_button" style="display: none">
-            <div class="col s12">
-              <button class="waves-effect waves-light btn w-max blue darken-1" onclick="restoreDraw('confirm')">保存データから復元する</button>
-            </div>
-          </div>
+<div class="row" id="restore_button" style="display: none">
+  <div class="col s12">
+    <button class="waves-effect waves-light btn w-max blue darken-1" onclick="restoreDraw('confirm')">保存データから復元する</button>
+  </div>
+</div>
 
-          <div class="input-field">
-            <select onchange="changeDrawMode(event.target.value)">
-              <option value="draw">Draw</option>
-              <option value="fill">Fill</option>
-              <option value="erase">Erase</option>
-            </select>
-          </div>
+<div class="input-field">
+  <select onchange="changeDrawMode(event.target.value)">
+    <option value="draw">Draw</option>
+    <option value="fill">Fill</option>
+    <option value="erase">Erase</option>
+  </select>
+</div>
 
-          <div class="range-field" style="z-index: 10">
-            <label>太さ</label>
-            <input type="range" id="weight" min="1" max="50" value="2" onchange="sketcher.weight = parseInt(this.value)"/>
-          </div>
+<div class="range-field" style="z-index: 10">
+  <label>太さ</label>
+  <input type="range" id="weight" min="1" max="50" value="2" onchange="sketcher.weight = parseInt(this.value)"/>
+</div>
+<div class="row">
+  <div class="col s8">
+    <label>Smoothing</label>
+  </div>
+  <div class="col s4">
+    <div class="switch">
+      <label>
+        <input type="checkbox" onchange="sketcher.smoothing = this.checked">
+        <span class="lever"></span>
+      </label>
+    </div>
+  </div>
+</div>
 
-          <div class="row">
-            <div class="col s8">
-              <label>Smoothing</label>
-            </div>
-            <div class="col s4">
-              <div class="switch">
-                <label>
-                  <input type="checkbox" onchange="sketcher.smoothing = this.checked">
-                  <span class="lever"></span>
-                </label>
-              </div>
-            </div>
-          </div>
+<div class="row">
+  <div class="col s8">
+    <label>Adaptive</label>
+  </div>
+  <div class="col s4">
+    <div class="switch">
+      <label>
+        <input type="checkbox" onchange="sketcher.adaptiveStroke = this.checked">
+        <span class="lever"></span>
+      </label>
+    </div>
+  </div>
+</div>
 
-          <div class="row">
-            <div class="col s8">
-              <label>Adaptive</label>
-            </div>
-            <div class="col s4">
-              <div class="switch">
-                <label>
-                  <input type="checkbox" onchange="sketcher.adaptiveStroke = this.checked">
-                  <span class="lever"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col s8">
-              <label>Color</label>
-            </div>
-            <div class="col s4" style="padding-left: 23px">
-              <input type="color" onchange="sketcher.color = event.target.value;" value="#000000">
-            </div>
-          </div>
-
-          <ul class="side-nav fixed" id="sidenav">
-            <div class="side-nav_footer">
-              このサービスは開発中 (Alpha版)です<br>
-              <a href="https://github.com/yuzulabo/Drawdon" target="_blank">ソースコード</a> · <a href="https://knzk.me/@y" target="_blank">Contact</a>
-            </div>
-          </ul>
-        </ul>
-      </div>
+<div class="row">
+  <div class="col s8">
+    <label>Color</label>
+  </div>
+  <div class="col s4" style="padding-left: 23px">
+    <input type="color" onchange="sketcher.color = event.target.value;" value="#000000">
+  </div>
+</div>
+EOF;
+include "../include/side_navbar.php";
+?>
 
       <div class="container" id="sketchBox">
         <canvas id="mySketcher"></canvas>
@@ -192,12 +180,9 @@
         <pre id="error_text"></pre>
       </div>
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <?php echo "../include/footer.php"; ?>
     <script src="js/lib/atrament.min.js"></script>
-    <script src="config.js"></script>
     <script src="js/mastodon_apis.js"></script>
-    <script src="js/components.js"></script>
     <script>
       var sketcher, color;
       $(document).ready(function() {

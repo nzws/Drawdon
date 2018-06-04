@@ -1,3 +1,8 @@
-.idea
-.vscode
-config.js
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+yarn-error.log
+public/css
+!public/css/.gitkeep

@@ -1,0 +1,45 @@
+{
+  "name": "drawdon",
+  "version": "1.0.0",
+  "description": "Easily upload drawing to Mastodon",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint:html": "htmlhint",
+    "lint:scss": "stylelint scss/*.scss",
+    "lint:php": "phplint '**/*.php'",
+    "lint": "npm-run-all lint:* -s",
+    "format:scss": "prettier scss/*.scss --write",
+    "format": "npm-run-all format:* -s",
+    "build:js": "uglifyjs js/*.js -o public/js/bundle.min.js -c",
+    "build:scss": "node-sass --include-path scss scss/style.scss public/css/style.css --output-style compressed",
+    "build": "npm-run-all build:* -s",
+    "watch:scss": "node-sass --include-path scss scss/style.scss public/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrawSuite/Drawdon.git"
+  },
+  "author": "nzws (yuzulabo)",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/DrawSuite/Drawdon/issues"
+  },
+  "homepage": "https://github.com/DrawSuite/Drawdon#readme",
+  "dependencies": {
+    "yarn": "^1.7.0"
+  },
+  "devDependencies": {
+    "htmlhint": "^0.9.13",
+    "node-sass": "^4.9.0",
+    "npm-run-all": "^4.1.3",
+    "phplint": "^2.0.0",
+    "prettier": "^1.13.4",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^9.2.1",
+    "stylelint-config-standard": "^18.2.0",
+    "uglify-js": "^3.4.0"
+  }
+}
