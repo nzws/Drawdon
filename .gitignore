@@ -6,3 +6,5 @@ node_modules/
 yarn-error.log
 public/css
 !public/css/.gitkeep
+public/js
+!public/js/.gitkeep
