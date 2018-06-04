@@ -1,6 +1,6 @@
 <div class="nav">
   <ul id="nav" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
-    <li class="logo"><a id="logo-container" href="#" class="brand-logo">Drawdon</a></li>
+    <li class="logo"><a id="logo-container" class="brand-logo">Drawdon Panel</a></li>
     <?php echo $navbar_html; ?>
     <ul class="side-nav fixed" id="sidenav">
       <div class="side-nav_footer">

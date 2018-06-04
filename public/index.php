@@ -28,17 +28,16 @@ include "../include/side_navbar.php";
 
       <main>
           <div class="container">
-            <h3>Drawdon</h3>
+            <h3><i class="fas fa-paint-brush"></i> Drawdon</h3>
+            Easily upload drawing to Mastodon
+            <hr>
+
           </div>
       </main>
 
-    <div id="start_modal" class="modal">
+    <div id="login_modal" class="modal">
       <div class="modal-content">
-        <h4 class="center">Drawdonへようこそ！</h4>
-        <p class="center">
-          ログインしてお絵かきを始めましょう！<br>
-          (DrawdonはPC向けのサービスです。スマートフォンでは<a href="https://knzkapp.nzws.me" target="_blank">KnzkApp</a>のDoodle機能をご利用ください。)
-        </p>
+        <h4 class="center">Drawdonにログイン</h4>
         <div class="row">
           <div class="input-field col m10 s12">
             <input placeholder="mastodon.social" id="mstdn_domain" type="text" class="validate w-max">
@@ -49,10 +48,6 @@ include "../include/side_navbar.php";
           </div>
         </div>
         <small>このログインを行ったことで、ユーザーに無断で投稿される事はありません。</small>
-        <p>
-          <small>* Drawdonはアルファ版です。今後機能を追加予定です。</small><br>
-          <a href="https://github.com/yuzulabo/Drawdon" target="_blank">Source code</a> · Contact: <a href="https://knzk.me/@y" target="_blank">@y@knzk.me</a>
-        </p>
       </div>
     </div>
 
@@ -65,7 +60,7 @@ include "../include/side_navbar.php";
         <pre id="error_text"></pre>
       </div>
     </div>
-    <?php echo "../include/footer.php"; ?>
+<?php include "../include/footer.php"; ?>
     <script>
       var sketcher, color;
       $(document).ready(function() {
