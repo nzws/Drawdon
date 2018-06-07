@@ -51,18 +51,8 @@ include "../include/side_navbar.php";
       </div>
     </div>
 
-    <div id="error" class="modal">
-      <div class="modal-content">
-        <h5 class="center">申し訳ありません。問題が発生しました。 :(</h5>
-        <p>
-          何度も発生する場合は、この画面のスクリーンショットを撮って<a href="https://knzk.me/@y" target="_blank">開発者</a>にお知らせ頂きますようお願いします。
-        </p>
-        <pre id="error_text"></pre>
-      </div>
-    </div>
 <?php include "../include/footer.php"; ?>
     <script>
-      var sketcher, color;
       $(document).ready(function() {
         $('.modal').modal();
       });
